@@ -1,5 +1,8 @@
 # digging
 
+[![Build Status](https://travis-ci.org/ninoseki/digging.svg?branch=master)](https://travis-ci.org/ninoseki/digging)
+[![Maintainability](https://api.codeclimate.com/v1/badges/07802a0ac721ed06b6a9/maintainability)](https://codeclimate.com/github/ninoseki/digging/maintainability)
+
 digging is a WEB API for DNS digging.
 
 ## How to use
