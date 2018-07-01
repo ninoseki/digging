@@ -9,7 +9,7 @@ digging is a WEB API for DNS digging.
 
 In order to send a data you must perform an HTTP POST request to the following URL:
 
-- `https://dng-digging.herokuapp.com/`
+- `https://dns-digging.herokuapp.com/`
 
 The API call expects the following parameter:
 

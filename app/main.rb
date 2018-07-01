@@ -7,9 +7,14 @@ class MainApp < Sinatra::Application
   end
 
   post "/" do
-    name = params["name"]
-    type = params["type"]
-    server = params["server"]
+    begin
+      json = JSON.parse(request.body.read)
+    rescue JSON::ParserError => _
+      json = {}
+    end
+    name = params["name"] || json["name"]
+    type = params["type"] || json["type"]
+    server = params["server"] || json["server"]
 
     begin
       digger = Digger.new(name, type, server)
