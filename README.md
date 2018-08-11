@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ninoseki/digging.svg?branch=master)](https://travis-ci.org/ninoseki/digging)
 [![Maintainability](https://api.codeclimate.com/v1/badges/07802a0ac721ed06b6a9/maintainability)](https://codeclimate.com/github/ninoseki/digging/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/ninoseki/digging/badge.svg?branch=master)](https://coveralls.io/github/ninoseki/digging?branch=master)
 
 digging is a WEB API for DNS digging.
 
