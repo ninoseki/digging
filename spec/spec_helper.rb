@@ -1,10 +1,10 @@
 require "rspec"
 require "require_all"
 
-require_rel "../app"
-
 require 'coveralls'
 Coveralls.wear!
+
+require_rel "../app"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
