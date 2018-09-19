@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 describe Converter do
-  let(:dns) { Resolv::DNS::new }
+  let(:dns) { Resolv::DNS.new }
   describe "#to_hash" do
     context "when given an in valid resouce" do
       it "should raise InvalidResourceError" do
