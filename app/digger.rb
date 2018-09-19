@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "resolv"
 require "ipaddr"
 
@@ -30,7 +32,7 @@ class Digger
   end
 
   def valid_type?(type)
-    TYPE_CLASSES.keys.include? type.upcase.to_sym
+    TYPE_CLASSES.key?(type.upcase.to_sym)
   end
 end
 
@@ -51,6 +53,7 @@ class Converter
 
   def initialize(resource)
     raise InvalidResourceError unless valid_resource?(resource)
+
     @resource = resource
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 preload_app!
 
 rackup      DefaultRackup

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Digger do
   describe "#get_resource" do
     it "should return a Resolv::DNS::Resource::IN::A object" do
