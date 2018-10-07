@@ -2,7 +2,7 @@
 
 describe Converter do
   let(:dns) { Resolv::DNS.new }
-  describe "#to_hash" do
+  describe ".to_hash" do
     context "when given an in valid resouce" do
       it "should raise InvalidResourceError" do
         expect { Converter.to_hash("invalid") }.to raise_error(Converter::InvalidResourceError)

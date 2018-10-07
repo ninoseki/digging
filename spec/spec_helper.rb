@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "rspec"
-require "require_all"
-
 require 'coveralls'
 Coveralls.wear!
+
+require "rspec"
+require "require_all"
 
 require_rel "../app"
 
