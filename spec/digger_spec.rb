@@ -13,7 +13,7 @@ describe Digger do
       expect(resource).to be_a Resolv::DNS::Resource::IN::AAAA
     end
     it "should return a Resolv::DNS::Resource::IN::CNAME object" do
-      digger = Digger.new("ninoseki.github.io", "CNAME", "8.8.8.8")
+      digger = Digger.new("mail.google.com", "CNAME", "8.8.8.8")
       resource = digger.get_resource
       expect(resource).to be_a Resolv::DNS::Resource::IN::CNAME
     end
