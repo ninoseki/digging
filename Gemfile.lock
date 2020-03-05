@@ -25,7 +25,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
-    puma (3.12.3)
+    puma (3.12.4)
     rack (2.2.2)
     rack-protection (2.0.4)
       rack
