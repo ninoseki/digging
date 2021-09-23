@@ -4,7 +4,14 @@ require "resolv"
 require "ipaddr"
 
 class Digger
-  attr_reader :name, :type, :server
+  # @return [String]
+  attr_reader :name
+
+  # @return [Resolv::DNS::Resource]
+  attr_reader :type
+
+  # @return [Resolv::DNS]
+  attr_reader :server
 
   class InvalidTypeError < StandardError; end
 
@@ -18,19 +25,39 @@ class Digger
     TXT: Resolv::DNS::Resource::IN::TXT
   }.freeze
 
+  #
+  # Initialize
+  #
+  # @param [String] name
+  # @param [String] type
+  # @param [String, nil] server
+  #
   def initialize(name, type, server)
     raise InvalidTypeError unless valid_type?(type)
 
     @name = name
     @type = TYPE_CLASSES[type.upcase.to_sym]
+
     server = "8.8.8.8" if server.nil?
     @server = Resolv::DNS.new(nameserver: [server])
   end
 
-  def get_resource
-    server.getresource(name, type)
+  #
+  # Get resources
+  #
+  # @return [Array<Resolv::DNS::Resource>]
+  #
+  def resources
+    server.getresources(name, type)
   end
 
+  #
+  # Validate type
+  #
+  # @param [String] type
+  #
+  # @return [Boolean]
+  #
   def valid_type?(type)
     TYPE_CLASSES.key?(type.upcase.to_sym)
   end
@@ -57,13 +84,26 @@ class Converter
     @resource = resource
   end
 
+  #
+  # Validate resource
+  #
+  # @param [Resolv::DNS::Resource] resource
+  #
+  # @return [Boolean]
+  #
   def valid_resource?(resource)
     resource.class.ancestors.include? Resolv::DNS::Resource
   end
 
+  #
+  # Return hash
+  #
+  # @return [Hash]
+  #
   def to_hash
     type = resource.class.to_s.split("::").last
     attributes = TYPE_ATTRIBUTES[type.to_sym]
+
     {}.tap do |hash|
       attributes.each do |attr|
         hash[attr] = resource.public_send(attr).to_s if resource.respond_to?(attr)
@@ -71,6 +111,13 @@ class Converter
     end
   end
 
+  #
+  # Convert resource to hash
+  #
+  # @param [Resolv::DNS::Resource] resource
+  #
+  # @return [Hash]
+  #
   def self.to_hash(resource)
     new(resource).to_hash
   end
