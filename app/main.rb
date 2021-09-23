@@ -4,14 +4,14 @@ require "json"
 require "sinatra"
 
 class MainApp < Sinatra::Application
-  get '/' do
-    send_file File.join(settings.public_folder, 'index.html')
+  get "/" do
+    send_file File.join(settings.public_folder, "index.html")
   end
 
   post "/" do
     begin
       json = JSON.parse(request.body.read)
-    rescue JSON::ParserError => _
+    rescue JSON::ParserError => _e
       json = {}
     end
     name = params["name"] || json["name"]
@@ -25,10 +25,10 @@ class MainApp < Sinatra::Application
 
       content_type :json
       hash.to_json
-    rescue Digger::InvalidTypeError => _
+    rescue Digger::InvalidTypeError => _e
       status 400
       "#{type} is an invalid type. Acceptable types: A, AAAA, CNAME, NX, NS, SOA, TXT."
-    rescue Converter::InvalidResourceError => _
+    rescue Converter::InvalidResourceError => _e
       status 400
       "Invalid resource error"
     rescue Resolv::ResolvError => e

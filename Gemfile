@@ -2,18 +2,20 @@
 
 source "https://rubygems.org"
 
-ruby "~> 2.5.0"
+ruby "~> 3.0"
 
-gem "dotenv"
-gem "puma"
-gem "require_all"
-gem "sinatra"
-gem "sinatra-contrib"
+gem "dotenv", "~> 2.7"
+gem "puma", "~> 5.5"
+gem "require_all", "~> 3.0"
+gem "sinatra", "~> 2.1"
+gem "sinatra-contrib", "~> 2.1"
 
 group :test, :development do
-  gem 'coveralls', require: false
-  gem "foreman"
-  gem "rack-test"
-  gem "rake"
-  gem "rspec"
+  gem "coveralls_reborn", "~> 0.23"
+  gem "foreman", "~> 0.87"
+  gem "overcommit", "~> 0.58"
+  gem "rack-test", "~> 1.1"
+  gem "rake", "~> 13.0"
+  gem "rspec", "~> 3.10"
+  gem "standard", "~> 1.3"
 end
