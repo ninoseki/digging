@@ -106,7 +106,17 @@ class Converter
 
     {}.tap do |hash|
       attributes.each do |attr|
-        hash[attr] = resource.public_send(attr).to_s if resource.respond_to?(attr)
+        next unless resource.respond_to?(attr)
+
+        value = resource.public_send(attr)
+
+        # TXT's strings returns an array of strings so do not change it
+        # Otherwise convert the value to a string
+        unless value.is_a?(Array)
+          value = value.to_s
+        end
+
+        hash[attr] = value
       end
     end
   end
