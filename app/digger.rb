@@ -9,13 +9,13 @@ class Digger
   class InvalidTypeError < StandardError; end
 
   TYPE_CLASSES = {
-    A:      Resolv::DNS::Resource::IN::A,
-    AAAA:   Resolv::DNS::Resource::IN::AAAA,
-    CNAME:  Resolv::DNS::Resource::IN::CNAME,
-    MX:     Resolv::DNS::Resource::IN::MX,
-    NS:     Resolv::DNS::Resource::IN::NS,
-    SOA:    Resolv::DNS::Resource::IN::SOA,
-    TXT:    Resolv::DNS::Resource::IN::TXT,
+    A: Resolv::DNS::Resource::IN::A,
+    AAAA: Resolv::DNS::Resource::IN::AAAA,
+    CNAME: Resolv::DNS::Resource::IN::CNAME,
+    MX: Resolv::DNS::Resource::IN::MX,
+    NS: Resolv::DNS::Resource::IN::NS,
+    SOA: Resolv::DNS::Resource::IN::SOA,
+    TXT: Resolv::DNS::Resource::IN::TXT
   }.freeze
 
   def initialize(name, type, server)
@@ -42,13 +42,13 @@ class Converter
   class InvalidResourceError < StandardError; end
 
   TYPE_ATTRIBUTES = {
-    A:      %i(address ttl),
-    AAAA:   %i(address ttl),
-    CNAME:  %i(name ttl),
-    MX:     %i(exchange preference ttl),
-    NS:     %i(name ttl),
-    SOA:    %i(expire minimum mname refresh retry rname serial ttl),
-    TXT:    %i(strings ttl)
+    A: %i[address ttl],
+    AAAA: %i[address ttl],
+    CNAME: %i[name ttl],
+    MX: %i[exchange preference ttl],
+    NS: %i[name ttl],
+    SOA: %i[expire minimum mname refresh retry rname serial ttl],
+    TXT: %i[strings ttl]
   }.freeze
 
   def initialize(resource)
