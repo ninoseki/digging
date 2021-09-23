@@ -14,26 +14,39 @@ class MainApp < Sinatra::Application
     rescue JSON::ParserError => _e
       json = {}
     end
+
     name = params["name"] || json["name"]
     type = params["type"] || json["type"]
     server = params["server"] || json["server"]
 
+    hashes = []
+
     begin
       digger = Digger.new(name, type, server)
-      resource = digger.get_resource
-      hash = Converter.to_hash(resource)
 
-      content_type :json
-      hash.to_json
+      resources = digger.resources
+      hashes = resources.map do |resource|
+        Converter.to_hash(resource)
+      end
     rescue Digger::InvalidTypeError => _e
+      content_type :json
       status 400
-      "#{type} is an invalid type. Acceptable types: A, AAAA, CNAME, NX, NS, SOA, TXT."
+
+      return { error: "#{type} is an invalid type. Acceptable types: A, AAAA, CNAME, NX, NS, SOA, TXT." }.to_json
     rescue Converter::InvalidResourceError => _e
+      content_type :json
       status 400
-      "Invalid resource error"
+
+      return { error: "Invalid resource error" }.to_json
     rescue Resolv::ResolvError => e
+      content_type :json
       status 400
-      e.to_s
+
+      return { error: e.to_s }.to_json
     end
+
+    content_type :json
+
+    hashes.to_json
   end
 end

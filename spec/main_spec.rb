@@ -14,8 +14,10 @@ describe "MainApp" do
       it "should return JSON" do
         post "/", name: "google.com", type: "A"
         expect(last_response).to be_ok
+
         json = JSON.parse(last_response.body)
-        expect(json).to be_a Hash
+        expect(json).to be_an Array
+        expect(json.first).to be_a Hash
       end
     end
 
@@ -23,8 +25,10 @@ describe "MainApp" do
       it "should return JSON" do
         post "/", { name: "google.com", type: "A" }.to_json, "CONTENT_TYPE" => "application/json"
         expect(last_response).to be_ok
+
         json = JSON.parse(last_response.body)
-        expect(json).to be_a Hash
+        expect(json).to be_an Array
+        expect(json.first).to be_a Hash
       end
     end
   end
