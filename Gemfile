@@ -5,7 +5,7 @@ source "https://rubygems.org"
 ruby "~> 3.0"
 
 gem "dotenv", "~> 2.7"
-gem "puma", "~> 5.5"
+gem "puma", "~> 5.6"
 gem "require_all", "~> 3.0"
 gem "sinatra", "~> 2.1"
 gem "sinatra-contrib", "~> 2.1"
