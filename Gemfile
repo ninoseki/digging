@@ -7,8 +7,8 @@ ruby "~> 3.0"
 gem "dotenv", "~> 2.7"
 gem "puma", "~> 5.5"
 gem "require_all", "~> 3.0"
-gem "sinatra", "~> 2.1"
-gem "sinatra-contrib", "~> 2.1"
+gem "sinatra", "~> 2.2"
+gem "sinatra-contrib", "~> 2.2"
 
 group :test, :development do
   gem "coveralls_reborn", "~> 0.23"
